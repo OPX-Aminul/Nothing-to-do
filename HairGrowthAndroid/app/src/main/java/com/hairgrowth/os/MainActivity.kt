@@ -39,12 +39,12 @@ import com.hairgrowth.os.ui.views.BlobView
 import com.hairgrowth.os.ui.views.ConfettiView
 import com.hairgrowth.os.ui.views.SplashMarkView
 import com.hairgrowth.os.util.Fx
-import com.hairgrowth.os.util.TonePlayer
+import com.hairgrowth.os.util.SoundEngine
 
 class MainActivity : AppCompatActivity(), Host {
 
     private lateinit var prefs: Prefs
-    private lateinit var tones: TonePlayer
+    private lateinit var sounds: SoundEngine
     private var accent = Palette.GOLD
 
     private var containerId: Int = 0
@@ -61,7 +61,8 @@ class MainActivity : AppCompatActivity(), Host {
     private lateinit var clockView: TextView
     private lateinit var greetWord: TextView
     private val handler = Handler(Looper.getMainLooper())
-    private var currentTab = "home"
+    /** Empty until the first tab is shown; survives recreation (theme/language switch). */
+    private var currentTab = ""
 
     private val dockButtons = HashMap<String, LinearLayout>()
     private val dockIndicators = HashMap<String, View>()
@@ -82,9 +83,12 @@ class MainActivity : AppCompatActivity(), Host {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
+        // Resolve the day/night palette before any view is built.
+        Palette.applyConfiguration(resources.configuration)
         prefs = Prefs(this)
-        tones = TonePlayer(this)
+        sounds = SoundEngine(this)
         accent = Palette.accent(prefs.accent)
+        applySystemBarIcons()
 
         setContentView(buildRoot())
 
@@ -103,10 +107,21 @@ class MainActivity : AppCompatActivity(), Host {
             insets
         }
 
-        showTab("home", animate = false)
+        val restored = savedInstanceState?.getString(KEY_TAB).orEmpty()
+        showTab(if (restored.isEmpty()) "home" else restored, animate = false)
         handler.post(clockTick)
         ReminderScheduler.sync(this)
         Handler(Looper.getMainLooper()).postDelayed({ dismissSplash() }, 2000L)
+    }
+
+    /** Light icons on the dark surface, dark icons on the light one. */
+    private fun applySystemBarIcons() {
+        try {
+            val controller = WindowCompat.getInsetsController(window, window.decorView)
+            controller.isAppearanceLightStatusBars = !Palette.dark
+            controller.isAppearanceLightNavigationBars = !Palette.dark
+        } catch (_: Throwable) {
+        }
     }
 
     // ---------------- root layout ----------------
@@ -156,7 +171,7 @@ class MainActivity : AppCompatActivity(), Host {
                 Ui.dp(this@MainActivity, 18f), Ui.dp(this@MainActivity, 12f),
                 Ui.dp(this@MainActivity, 18f), Ui.dp(this@MainActivity, 12f)
             )
-            background = Ui.round(0xF0181A20.toInt(), Ui.fdp(this@MainActivity, 14f), 1, Palette.LINE_STRONG)
+            background = Ui.round(Palette.TOAST_BG, Ui.fdp(this@MainActivity, 14f), 1, Palette.LINE_STRONG)
             alpha = 0f
             visibility = View.INVISIBLE
         }
@@ -219,6 +234,7 @@ class MainActivity : AppCompatActivity(), Host {
         return row
     }
 
+
     private fun buildDock(): View {
         val ctx = this
         val wrap = FrameLayout(ctx)
@@ -226,7 +242,8 @@ class MainActivity : AppCompatActivity(), Host {
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER_VERTICAL
             setPadding(Ui.dp(ctx, 6f), Ui.dp(ctx, 6f), Ui.dp(ctx, 6f), Ui.dp(ctx, 6f))
-            background = Ui.round(0xD8101218.toInt(), Ui.fdp(ctx, 26f), 1, Palette.LINE_STRONG)
+            background = Ui.round(Palette.DOCK_BG, Ui.fdp(ctx, 26f), 1, Palette.LINE_STRONG)
+            elevation = Ui.fdp(ctx, 12f)
         }
         val tabs = listOf(
             Triple("home", R.drawable.ic_home, getString(R.string.nav_home)),
@@ -240,7 +257,10 @@ class MainActivity : AppCompatActivity(), Host {
                 gravity = Gravity.CENTER
                 setPadding(0, Ui.dp(ctx, 6f), 0, Ui.dp(ctx, 6f))
                 isClickable = true
-                setOnClickListener { showTab(tab, animate = true) }
+                setOnClickListener {
+                    sounds.tap()
+                    showTab(tab, animate = true)
+                }
             }
             val indicator = View(ctx).apply {
                 background = Ui.round(accent, Ui.fdp(ctx, 2f))
@@ -323,7 +343,7 @@ class MainActivity : AppCompatActivity(), Host {
             ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
         ).apply { topMargin = Ui.dp(ctx, 8f) })
 
-        val bar = FrameLayout(ctx).apply { background = Ui.round(0x14FFFFFF, Ui.fdp(ctx, 2f)) }
+        val bar = FrameLayout(ctx).apply { background = Ui.round(Palette.TRACK, Ui.fdp(ctx, 2f)) }
         val fill = View(ctx).apply {
             background = Ui.linear(intArrayOf(accent, Palette.ROSE), Ui.fdp(ctx, 2f))
         }
@@ -362,6 +382,7 @@ class MainActivity : AppCompatActivity(), Host {
     // ---------------- navigation ----------------
 
     private fun showTab(tab: String, animate: Boolean) {
+        if (tab == currentTab) return
         currentTab = tab
         val fragment: Fragment = when (tab) {
             "dashboard" -> DashboardFragment()
@@ -369,9 +390,19 @@ class MainActivity : AppCompatActivity(), Host {
             "settings" -> SettingsFragment()
             else -> HomeFragment()
         }
+        val host = findViewById<View>(containerId)
+        if (animate && host != null) {
+            host.alpha = 0f
+            host.translationY = Ui.fdp(this, 12f)
+        }
         val tx = supportFragmentManager.beginTransaction()
-        if (animate) tx.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
         tx.replace(containerId, fragment)
+        if (animate && host != null) {
+            tx.runOnCommit {
+                host.animate().alpha(1f).translationY(0f).setDuration(320)
+                    .setInterpolator(DecelerateInterpolator()).start()
+            }
+        }
         tx.commit()
         updateDockState()
         Fx.tap(this, 15)
@@ -422,7 +453,12 @@ class MainActivity : AppCompatActivity(), Host {
     }
 
     override fun playTone(kind: String) {
-        tones.play(kind)
+        when (kind) {
+            "complete" -> sounds.complete()
+            "celebrate" -> sounds.celebrate()
+            "reminder" -> sounds.playAlarm()
+            else -> sounds.tap()
+        }
     }
 
     override fun requestNotifPermission() {
@@ -454,9 +490,19 @@ class MainActivity : AppCompatActivity(), Host {
 
     override fun onDestroy() {
         handler.removeCallbacks(clockTick)
+        sounds.release()
         super.onDestroy()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putString(KEY_TAB, currentTab)
+        super.onSaveInstanceState(outState)
     }
 
     private fun withAlpha(color: Int, alpha: Int): Int =
         (color and 0x00FFFFFF) or ((alpha and 0xFF) shl 24)
+
+    private companion object {
+        const val KEY_TAB = "hgos_tab"
+    }
 }

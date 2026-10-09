@@ -24,13 +24,13 @@ import com.hairgrowth.os.ui.Palette
 import com.hairgrowth.os.ui.Ui
 import com.hairgrowth.os.ui.views.SwitchView
 import com.hairgrowth.os.util.Fx
-import com.hairgrowth.os.util.TonePlayer
+import com.hairgrowth.os.util.SoundEngine
 
 class RemindersFragment : Fragment() {
 
     private lateinit var prefs: Prefs
     private lateinit var store: ScheduleStore
-    private lateinit var tones: TonePlayer
+    private lateinit var sounds: SoundEngine
     private var accent = Palette.GOLD
     private lateinit var days: List<Day>
     private var countChip: TextView? = null
@@ -49,7 +49,7 @@ class RemindersFragment : Fragment() {
         val ctx = requireContext()
         prefs = Prefs(ctx)
         store = ScheduleStore(ctx)
-        tones = TonePlayer(ctx)
+        sounds = SoundEngine(ctx)
         accent = Palette.accent(prefs.accent)
         days = store.days()
 
@@ -73,6 +73,7 @@ class RemindersFragment : Fragment() {
         root.addView(buildNote())
         updateBanner()
         updateCount()
+        Ui.animIn(root, dy = 10f)
         return sv
     }
 
@@ -144,7 +145,7 @@ class RemindersFragment : Fragment() {
             typeface = Fonts.bnSemi(ctx)
             textSize = 12f
             gravity = Gravity.CENTER
-            setTextColor(0xFF14161C.toInt())
+            setTextColor(if (Palette.dark) 0xFF14161C.toInt() else 0xFFFFFFFF.toInt())
             setPadding(Ui.dp(ctx, 14f), Ui.dp(ctx, 9f), Ui.dp(ctx, 14f), Ui.dp(ctx, 9f))
             background = Ui.linear(intArrayOf(accent, accent), Ui.fdp(ctx, 11f))
             isClickable = true
@@ -227,7 +228,7 @@ class RemindersFragment : Fragment() {
                 background = Ui.round(Palette.PANEL, Ui.fdp(ctx, 12f), 1, Palette.LINE)
                 isClickable = true
                 foreground = android.graphics.drawable.RippleDrawable(
-                    ColorStateList.valueOf(0x22FFFFFF), null,
+                    ColorStateList.valueOf(withAlpha(Palette.TEXT, 0x1E)), null,
                     Ui.round(android.graphics.Color.WHITE, Ui.fdp(ctx, 12f))
                 )
                 setOnClickListener {
@@ -276,7 +277,7 @@ class RemindersFragment : Fragment() {
                 NotificationHelper.post(ctx, getString(R.string.app_name), getString(R.string.rem_test_sent), "hgos-test")
             }
             Fx.reminderPattern(ctx)
-            tones.play("reminder")
+            sounds.playAlarm()
             if (!NotificationHelper.canPost(ctx)) (activity as? Host)?.requestNotifPermission()
             (activity as? Host)?.showToast(getString(R.string.rem_test_sent))
         }
@@ -309,12 +310,17 @@ class RemindersFragment : Fragment() {
             val row = LinearLayout(ctx).apply {
                 orientation = LinearLayout.HORIZONTAL
                 gravity = Gravity.CENTER_VERTICAL
-                setPadding(Ui.dp(ctx, 13f), Ui.dp(ctx, 12f), Ui.dp(ctx, 13f), Ui.dp(ctx, 12f))
+                setPadding(Ui.dp(ctx, 14f), Ui.dp(ctx, 13f), Ui.dp(ctx, 14f), Ui.dp(ctx, 13f))
+                elevation = Ui.fdp(ctx, 4f)
+                foreground = android.graphics.drawable.RippleDrawable(
+                    ColorStateList.valueOf(withAlpha(Palette.TEXT, 0x14)), null,
+                    Ui.round(android.graphics.Color.WHITE, Ui.fdp(ctx, 18f))
+                )
                 background = if (on) Ui.linear(
-                    intArrayOf(withAlpha(accent, 0x18), withAlpha(accent, 0x05)),
-                    Ui.fdp(ctx, 16f)
-                ).apply { setStroke(Ui.dp(ctx, 1f), withAlpha(accent, 0x50)) }
-                else Ui.round(Palette.PANEL, Ui.fdp(ctx, 16f), 1, Palette.LINE)
+                    intArrayOf(withAlpha(accent, 0x1C), withAlpha(accent, 0x06)),
+                    Ui.fdp(ctx, 18f)
+                ).apply { setStroke(Ui.dp(ctx, 1f), withAlpha(accent, 0x55)) }
+                else Ui.card(ctx, 18f)
             }
             val col = LinearLayout(ctx).apply { orientation = LinearLayout.VERTICAL }
             col.addView(TextView(ctx).apply {
@@ -335,7 +341,7 @@ class RemindersFragment : Fragment() {
                     setTextColor(if (on) Palette.TEXT else Palette.MUTED)
                     setPadding(Ui.dp(ctx, 9f), Ui.dp(ctx, 4f), Ui.dp(ctx, 9f), Ui.dp(ctx, 4f))
                     background = Ui.round(
-                        0x0DFFFFFF, Ui.fdp(ctx, 20f), 1,
+                        Palette.CHIP_BG, Ui.fdp(ctx, 20f), 1,
                         if (on) withAlpha(accent, 0x40) else Palette.LINE
                     )
                     isClickable = true
@@ -399,7 +405,7 @@ class RemindersFragment : Fragment() {
         val note = LinearLayout(ctx).apply {
             orientation = LinearLayout.HORIZONTAL
             setPadding(Ui.dp(ctx, 14f), Ui.dp(ctx, 12f), Ui.dp(ctx, 14f), Ui.dp(ctx, 12f))
-            background = Ui.round(0x08FFFFFF, Ui.fdp(ctx, 14f), 1, Palette.LINE_STRONG)
+            background = Ui.round(Palette.NOTE_BG, Ui.fdp(ctx, 14f), 1, Palette.LINE_STRONG)
             layoutParams = LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT
             ).apply { topMargin = Ui.dp(ctx, 4f) }
@@ -419,4 +425,9 @@ class RemindersFragment : Fragment() {
 
     private fun withAlpha(color: Int, alpha: Int): Int =
         (color and 0x00FFFFFF) or ((alpha and 0xFF) shl 24)
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        sounds.release()
+    }
 }

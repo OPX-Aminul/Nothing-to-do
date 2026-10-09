@@ -33,6 +33,16 @@ class Prefs(context: Context) {
         get() = sp.getString("language", "en") ?: "en"
         set(v) = sp.edit().putString("language", v).apply()
 
+    /** Theme mode: "system" (default), "light" or "dark". */
+    var themeMode: String
+        get() = sp.getString("themeMode", "system") ?: "system"
+        set(v) = sp.edit().putString("themeMode", v).apply()
+
+    /** Selected reminder sound key (see SoundEngine.ALARMS). */
+    var alarmSound: String
+        get() = sp.getString("alarmSound", "default") ?: "default"
+        set(v) = sp.edit().putString("alarmSound", v).apply()
+
     // ---- task completion ----
     val done: Set<String>
         get() = sp.getStringSet("state", emptySet()) ?: emptySet()
@@ -91,8 +101,17 @@ class Prefs(context: Context) {
         lastStreakDate = t
     }
 
+    /** Accent as a vivid ARGB int, for surfaces outside the activity (notifications). */
+    fun accentColorInt(): Int = when (accent.lowercase()) {
+        "#7ee0c3" -> 0xFF7EE0C3.toInt()
+        "#e8a0b4" -> 0xFFE8A0B4.toInt()
+        "#9ec5ff" -> 0xFF9EC5FF.toInt()
+        else -> 0xFFD4AF7A.toInt()
+    }
+
     companion object {
         val ACCENTS = listOf("#d4af7a", "#7ee0c3", "#e8a0b4", "#9ec5ff")
         val LANGUAGES = listOf("en", "hi", "bn")
+        val THEMES = listOf("system", "light", "dark")
     }
 }

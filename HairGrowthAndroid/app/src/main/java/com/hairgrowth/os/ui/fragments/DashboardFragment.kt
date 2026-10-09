@@ -64,13 +64,34 @@ class DashboardFragment : Fragment() {
             Math.round(d.tasks.count { prefs.isDone(it.id) } * 100f / d.tasks.size.coerceAtLeast(1))
         }
 
+        root.addView(buildTitle())
         root.addView(buildHero(done, total))
         root.addView(buildBento(done, total, pctPerDay))
         root.addView(buildSectionHead())
         root.addView(buildBarsPanel(pctPerDay))
         root.addView(buildStreakPanel())
         root.addView(buildRingsPanel(pctPerDay))
+        Ui.animIn(root, dy = 10f)
         return sv
+    }
+
+    /** Page title with the animated accent underline used across the app. */
+    private fun buildTitle(): View {
+        val ctx = requireContext()
+        val col = LinearLayout(ctx).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(0, Ui.dp(ctx, 6f), 0, Ui.dp(ctx, 4f))
+        }
+        col.addView(TextView(ctx).apply {
+            text = getString(R.string.nav_dashboard)
+            typeface = Fonts.bnSemi(ctx)
+            textSize = 22f
+            setTextColor(Palette.TEXT)
+        })
+        col.addView(Ui.underline(ctx, accent), LinearLayout.LayoutParams(
+            Ui.dp(ctx, 34f), Ui.dp(ctx, 2.5f)
+        ).apply { topMargin = Ui.dp(ctx, 10f) })
+        return col
     }
 
     private fun buildHero(done: Int, total: Int): View {
@@ -118,7 +139,8 @@ class DashboardFragment : Fragment() {
         val cell = LinearLayout(ctx).apply {
             orientation = LinearLayout.VERTICAL
             setPadding(Ui.dp(ctx, 15f), Ui.dp(ctx, 15f), Ui.dp(ctx, 15f), Ui.dp(ctx, 15f))
-            background = Ui.round(Palette.PANEL, Ui.fdp(ctx, 16f), 1, Palette.LINE)
+            background = Ui.card(ctx, 16f)
+            elevation = Ui.fdp(ctx, 4f)
         }
         val kRow = LinearLayout(ctx).apply {
             orientation = LinearLayout.HORIZONTAL
@@ -197,7 +219,8 @@ class DashboardFragment : Fragment() {
         val sparkCell = LinearLayout(ctx).apply {
             orientation = LinearLayout.VERTICAL
             setPadding(Ui.dp(ctx, 15f), Ui.dp(ctx, 15f), Ui.dp(ctx, 15f), Ui.dp(ctx, 15f))
-            background = Ui.round(Palette.PANEL, Ui.fdp(ctx, 16f), 1, Palette.LINE)
+            background = Ui.card(ctx, 16f)
+            elevation = Ui.fdp(ctx, 4f)
         }
         val kRow = LinearLayout(ctx).apply {
             orientation = LinearLayout.HORIZONTAL
@@ -241,11 +264,15 @@ class DashboardFragment : Fragment() {
             imageTintList = ColorStateList.valueOf(accent)
         }, LinearLayout.LayoutParams(Ui.dp(ctx, 16f), Ui.dp(ctx, 16f)))
         row.addView(TextView(ctx).apply {
-            text = "  " + getString(R.string.dash_insights)
+            text = getString(R.string.dash_insights)
             typeface = Fonts.bnSemi(ctx)
             textSize = 18f
             setTextColor(Palette.TEXT)
+            setPadding(Ui.dp(ctx, 9f), 0, 0, 0)
         })
+        row.addView(Ui.underline(ctx, accent), LinearLayout.LayoutParams(
+            Ui.dp(ctx, 30f), Ui.dp(ctx, 2.5f)
+        ).apply { marginStart = Ui.dp(ctx, 10f) })
         row.addView(View(ctx), LinearLayout.LayoutParams(0, 1, 1f))
         row.addView(TextView(ctx).apply {
             text = getString(R.string.dash_7days)
@@ -263,7 +290,8 @@ class DashboardFragment : Fragment() {
         val panel = LinearLayout(ctx).apply {
             orientation = LinearLayout.VERTICAL
             setPadding(Ui.dp(ctx, 16f), Ui.dp(ctx, 16f), Ui.dp(ctx, 16f), Ui.dp(ctx, 16f))
-            background = Ui.round(Palette.PANEL, Ui.fdp(ctx, 16f), 1, Palette.LINE)
+            background = Ui.card(ctx, 16f)
+            elevation = Ui.fdp(ctx, 4f)
             layoutParams = LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT
             ).apply { bottomMargin = Ui.dp(ctx, 12f) }

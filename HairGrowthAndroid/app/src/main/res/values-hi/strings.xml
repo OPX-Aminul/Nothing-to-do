@@ -130,4 +130,34 @@
     <string name="notif_now_title">अभी समय है — %1$s</string>
     <string name="notif_now_body">%1$s — %2$s</string>
     <string name="notif_day_title">HairGrowth OS — %1$s</string>
+    <string name="channel_name_tone">प्रोटोकॉल रिमाइंडर · %1$s</string>
+
+    <!-- home: pinned day selector -->
+    <string name="home_done_meta">%2$d में से %1$d पूर्ण</string>
+    <string name="home_today_card_title">आज का फ़ोकस</string>
+    <string name="home_today_card_sub">%2$d में से %1$d रूटीन पूर्ण</string>
+    <string name="home_section_today">आज के रूटीन</string>
+    <string name="home_section_day">इस दिन के रूटीन</string>
+    <string name="home_empty_day">इस दिन अभी कोई रूटीन नहीं — नीचे पहला जोड़ें।</string>
+    <string name="home_footer_note">ऊपर से दिन चुनें · एडिट के लिए रूटीन दबाए रखें</string>
+
+    <!-- appearance (day / night) -->
+    <string name="set_appearance">अपीयरेंस</string>
+    <string name="set_appearance_sub">सिस्टम · लाइट · डार्क</string>
+    <string name="appear_system">सिस्टम के अनुसार</string>
+    <string name="appear_light">लाइट</string>
+    <string name="appear_dark">डार्क</string>
+    <string name="toast_appearance">अपीयरेंस अपडेट हुआ</string>
+
+    <!-- reminder tones -->
+    <string name="set_alarm_sound">रिमाइंडर साउंड</string>
+    <string name="set_alarm_sound_sub">रिमाइंडर में बजने वाला टोन</string>
+    <string name="tone_default">डिफ़ॉल्ट चाइम</string>
+    <string name="tone_chime">सॉफ़्ट चाइम</string>
+    <string name="tone_bell">बेल</string>
+    <string name="tone_marimba">मरिंबा</string>
+    <string name="tone_pulse">पल्स</string>
+    <string name="tone_digital">डिजिटल</string>
+    <string name="toast_alarm_sound">रिमाइंडर साउंड अपडेट हुआ</string>
+    <string name="rem_test_hint">टेस्ट दबाने पर चुना गया रिमाइंडर साउंड बजेगा</string>
 </resources>

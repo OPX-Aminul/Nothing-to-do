@@ -130,4 +130,34 @@
     <string name="notif_now_title">এখনই সময় — %1$s</string>
     <string name="notif_now_body">%1$s — %2$s</string>
     <string name="notif_day_title">HairGrowth OS — %1$s</string>
+    <string name="channel_name_tone">প্রোটোকল রিমাইন্ডার · %1$s</string>
+
+    <!-- home: pinned day selector -->
+    <string name="home_done_meta">%2$d টির মধ্যে %1$d সম্পন্ন</string>
+    <string name="home_today_card_title">আজকের ফোকাস</string>
+    <string name="home_today_card_sub">%2$d টি রুটিনের মধ্যে %1$d সম্পন্ন</string>
+    <string name="home_section_today">আজকের রুটিন</string>
+    <string name="home_section_day">এই দিনের রুটিন</string>
+    <string name="home_empty_day">এই দিনে এখনো কোনো রুটিন নেই — নিচে প্রথমটি যোগ করুন।</string>
+    <string name="home_footer_note">উপরের বার থেকে দিন বেছে নিন · এডিট করতে রুটিন চেপে ধরুন</string>
+
+    <!-- appearance (day / night) -->
+    <string name="set_appearance">অ্যাপিয়ারেন্স</string>
+    <string name="set_appearance_sub">সিস্টেম · লাইট · ডার্ক</string>
+    <string name="appear_system">সিস্টেম অনুযায়ী</string>
+    <string name="appear_light">লাইট</string>
+    <string name="appear_dark">ডার্ক</string>
+    <string name="toast_appearance">অ্যাপিয়ারেন্স আপডেট হয়েছে</string>
+
+    <!-- reminder tones -->
+    <string name="set_alarm_sound">রিমাইন্ডার সাউন্ড</string>
+    <string name="set_alarm_sound_sub">রিমাইন্ডারে যে টোন বাজবে</string>
+    <string name="tone_default">ডিফল্ট চাইম</string>
+    <string name="tone_chime">সফট চাইম</string>
+    <string name="tone_bell">বেল</string>
+    <string name="tone_marimba">মারিম্বা</string>
+    <string name="tone_pulse">পালস</string>
+    <string name="tone_digital">ডিজিটাল</string>
+    <string name="toast_alarm_sound">রিমাইন্ডার সাউন্ড আপডেট হয়েছে</string>
+    <string name="rem_test_hint">টেস্ট চাপলে আপনার নির্বাচিত রিমাইন্ডার সাউন্ড বাজবে</string>
 </resources>

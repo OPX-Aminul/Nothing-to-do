@@ -142,4 +142,34 @@
     <string name="notif_now_title">Time now — %1$s</string>
     <string name="notif_now_body">%1$s — %2$s</string>
     <string name="notif_day_title">HairGrowth OS — %1$s</string>
+    <string name="channel_name_tone">Protocol Reminders · %1$s</string>
+
+    <!-- home: pinned day selector -->
+    <string name="home_done_meta">%1$d of %2$d done</string>
+    <string name="home_today_card_title">Today\'s focus</string>
+    <string name="home_today_card_sub">%1$d of %2$d routines completed</string>
+    <string name="home_section_today">Today\'s routines</string>
+    <string name="home_section_day">Routines for this day</string>
+    <string name="home_empty_day">No routines for this day yet — add your first one below.</string>
+    <string name="home_footer_note">Tap a day at the top to switch · long-press a routine to edit</string>
+
+    <!-- appearance (day / night) -->
+    <string name="set_appearance">Appearance</string>
+    <string name="set_appearance_sub">System · Light · Dark</string>
+    <string name="appear_system">Follow system</string>
+    <string name="appear_light">Light</string>
+    <string name="appear_dark">Dark</string>
+    <string name="toast_appearance">Appearance updated</string>
+
+    <!-- reminder tones -->
+    <string name="set_alarm_sound">Reminder sound</string>
+    <string name="set_alarm_sound_sub">Tone played by reminders</string>
+    <string name="tone_default">Default chime</string>
+    <string name="tone_chime">Soft chime</string>
+    <string name="tone_bell">Bell</string>
+    <string name="tone_marimba">Marimba</string>
+    <string name="tone_pulse">Pulse</string>
+    <string name="tone_digital">Digital</string>
+    <string name="toast_alarm_sound">Reminder sound updated</string>
+    <string name="rem_test_hint">Test plays your selected reminder sound</string>
 </resources>

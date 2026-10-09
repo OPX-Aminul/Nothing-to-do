@@ -149,7 +149,7 @@ class RingsView @JvmOverloads constructor(
             rect.set(cx - radius, cy - radius, cx + radius, cy + radius)
             paint.style = Paint.Style.STROKE
             paint.strokeWidth = stroke
-            paint.color = 0x14FFFFFF
+            paint.color = Palette.TRACK
             canvas.drawCircle(cx, cy, radius, paint)
 
             val sweep = 360f * (values[i] / 100f) * shown

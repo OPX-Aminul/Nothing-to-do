@@ -1,12 +1,7 @@
 package com.hairgrowth.os
 
 import android.app.Application
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.media.AudioAttributes
-import android.os.Build
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.ContextCompat
 import androidx.core.os.LocaleListCompat
 import com.hairgrowth.os.data.Prefs
 import com.hairgrowth.os.reminder.NotificationHelper
@@ -15,8 +10,25 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        applyNightMode()
         applySavedLanguage()
-        createChannel()
+        NotificationHelper.ensureChannels(this)
+    }
+
+    /**
+     * Day / night handling: the app follows the system by default (light when
+     * the device is in day mode, dark at night) and the user may override it
+     * from Settings → Appearance.
+     */
+    private fun applyNightMode() {
+        val mode = when (Prefs(this).themeMode) {
+            "light" -> AppCompatDelegate.MODE_NIGHT_NO
+            "dark" -> AppCompatDelegate.MODE_NIGHT_YES
+            else -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+        }
+        if (AppCompatDelegate.getDefaultNightMode() != mode) {
+            AppCompatDelegate.setDefaultNightMode(mode)
+        }
     }
 
     /**
@@ -31,31 +43,5 @@ class App : Application() {
             }
         } catch (_: Throwable) {
         }
-    }
-
-    private fun createChannel() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return
-        val nm = ContextCompat.getSystemService(this, NotificationManager::class.java) ?: return
-        if (nm.getNotificationChannel(NotificationHelper.CHANNEL_ID) != null) return
-        val channel = NotificationChannel(
-            NotificationHelper.CHANNEL_ID,
-            getString(R.string.channel_name),
-            NotificationManager.IMPORTANCE_HIGH
-        ).apply {
-            description = getString(R.string.channel_desc)
-            enableVibration(true)
-            vibrationPattern = longArrayOf(140, 70, 140, 70, 240)
-            enableLights(true)
-            lightColor = 0xFFD4AF7A.toInt()
-            setShowBadge(true)
-            setSound(
-                android.provider.Settings.System.DEFAULT_NOTIFICATION_URI,
-                AudioAttributes.Builder()
-                    .setUsage(AudioAttributes.USAGE_NOTIFICATION)
-                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                    .build()
-            )
-        }
-        nm.createNotificationChannel(channel)
     }
 }

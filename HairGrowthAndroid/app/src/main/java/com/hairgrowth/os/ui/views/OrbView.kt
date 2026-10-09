@@ -122,7 +122,7 @@ class OrbView @JvmOverloads constructor(
         paint.style = Paint.Style.STROKE
         paint.strokeCap = Paint.Cap.ROUND
         paint.strokeWidth = stroke
-        paint.color = 0x14FFFFFF
+        paint.color = Palette.TRACK
         canvas.drawCircle(cx, cy, radius, paint)
 
         // layered glow arcs (blur-free glow for all API levels)
