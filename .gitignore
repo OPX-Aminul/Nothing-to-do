@@ -1,0 +1,19 @@
+# --- Android build outputs ---
+HairGrowthAndroid/.gradle/
+HairGrowthAndroid/build/
+HairGrowthAndroid/app/build/
+HairGrowthAndroid/local.properties
+HairGrowthAndroid/.idea/
+HairGrowthAndroid/captures/
+HairGrowthAndroid/*.iml
+HairGrowthAndroid/app/*.iml
+.cxx/
+*.hprof
+
+# --- Local release artifacts (APKs are published under GitHub Releases) ---
+release/
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+*.swp

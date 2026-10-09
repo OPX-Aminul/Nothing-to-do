@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HairGrowth OS</string>
+    <string name="channel_name">Protocol Reminders</string>
+    <string name="channel_desc">Daily hair-care routine reminders</string>
+    <string name="splash_sub">CLINICAL PROTOCOL</string>
+
+    <!-- greeting -->
+    <string name="greeting_prefix">Good </string>
+    <string name="greeting_morning">Morning</string>
+    <string name="greeting_afternoon">Afternoon</string>
+    <string name="greeting_evening">Evening</string>
+    <string name="greeting_night">Night</string>
+
+    <!-- navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_dashboard">Dashboard</string>
+    <string name="nav_reminders">Reminders</string>
+    <string name="nav_settings">Settings</string>
+
+    <!-- home -->
+    <string name="home_title">Today\'s Protocol</string>
+    <string name="home_sub">Follow your hair-care steps in order.</string>
+    <string name="home_week">Week</string>
+    <string name="tag_today">Today</string>
+    <string name="tag_derma">Derma Day</string>
+    <string name="add_task">+ Add task</string>
+
+    <!-- days -->
+    <string name="day_sun">Sunday</string>
+    <string name="day_mon">Monday</string>
+    <string name="day_tue">Tuesday</string>
+    <string name="day_wed">Wednesday</string>
+    <string name="day_thu">Thursday</string>
+    <string name="day_fri">Friday</string>
+    <string name="day_sat">Saturday</string>
+    <string name="day_sun_short">Sun</string>
+    <string name="day_mon_short">Mon</string>
+    <string name="day_tue_short">Tue</string>
+    <string name="day_wed_short">Wed</string>
+    <string name="day_thu_short">Thu</string>
+    <string name="day_fri_short">Fri</string>
+    <string name="day_sat_short">Sat</string>
+
+    <!-- default protocol texts -->
+    <string name="task_minoxidil">Minoxidil 5%</string>
+    <string name="task_shampoo">Ketoconazole Shampoo</string>
+    <string name="task_derma">Derma Roller (0.5mm)</string>
+    <string name="desc_minox_morning">Morning • 1ml to scalp</string>
+    <string name="desc_minox_night">Night • 1ml to scalp</string>
+    <string name="desc_shampoo_wash">Night • 3-5 minute wash</string>
+    <string name="desc_shampoo_cleanse">Night • cleanse scalp</string>
+    <string name="desc_derma_rolling">Night • 4-5 spot rolling</string>
+
+    <!-- dashboard -->
+    <string name="dash_weekly">Weekly</string>
+    <string name="dash_streak">Streak</string>
+    <string name="dash_streak_sub">Consecutive protocol days</string>
+    <string name="dash_done">Completed</string>
+    <string name="dash_done_sub">This week\'s tasks</string>
+    <string name="dash_progress">Weekly progress</string>
+    <string name="dash_insights">Insights</string>
+    <string name="dash_7days">7 days</string>
+    <string name="dash_daily">Daily completion</string>
+    <string name="dash_streak_meta">consecutive days\nfollowed</string>
+    <string name="dash_derma_next">Next derma session</string>
+    <string name="dash_derma_days">%1$d days left</string>
+    <string name="dash_effectiveness">Weekly effectiveness</string>
+
+    <!-- reminders -->
+    <string name="rem_title">Reminders</string>
+    <string name="notif_banner_title">Notifications</string>
+    <string name="notif_banner_off">Allow notifications for daily reminders</string>
+    <string name="notif_banner_on">Notifications are on</string>
+    <string name="btn_enable">Enable</string>
+    <string name="btn_on">On</string>
+    <string name="rem_all_on">All on</string>
+    <string name="rem_all_off">All off</string>
+    <string name="rem_test">Test</string>
+    <string name="rem_derma_suffix"> · Derma</string>
+    <string name="rem_note">Turn a day on and each routine will remind you at its own time.</string>
+    <string name="rem_test_sent">Test notification sent</string>
+    <string name="rem_all_on_toast">All daily reminders enabled</string>
+    <string name="rem_all_off_toast">All reminders disabled</string>
+    <string name="rem_day_on_toast">%1$s — reminders on for %2$d routines</string>
+    <string name="rem_day_off_toast">%1$s reminders off</string>
+    <string name="exact_alarm_hint">Allow “Alarms &amp; reminders” for on-time alerts — tap</string>
+    <string name="rem_edit_hint">Tap a time to edit that routine</string>
+
+    <!-- settings -->
+    <string name="set_title">Settings</string>
+    <string name="set_haptic">Haptic feedback</string>
+    <string name="set_haptic_sub">Vibration on tap</string>
+    <string name="set_sound">Sound effects</string>
+    <string name="set_sound_sub">Tone on completion</string>
+    <string name="set_accent">Accent color</string>
+    <string name="set_accent_sub">App theme tone</string>
+    <string name="set_language">Language</string>
+    <string name="set_language_sub">English · हिन्दी · বাংলা</string>
+    <string name="set_customize">Customize protocol</string>
+    <string name="set_customize_sub">Edit tasks, times &amp; reminders</string>
+    <string name="set_reset_week">Reset week</string>
+    <string name="set_reset_week_sub">Unchecks all tasks</string>
+    <string name="set_privacy">100% Private</string>
+    <string name="set_privacy_sub">Data is stored only on this device</string>
+    <string name="reset_protocol">Reset protocol</string>
+    <string name="reset_protocol_sub">Restore default tasks &amp; times</string>
+
+    <!-- dialogs & toasts -->
+    <string name="dialog_reset_title">Reset week</string>
+    <string name="dialog_reset_msg">Uncheck all tasks for a new week?</string>
+    <string name="dialog_reset_ok">Reset</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_reset_protocol_title">Reset protocol</string>
+    <string name="dialog_reset_protocol_msg">Restore the default daily growth protocol?</string>
+    <string name="toast_week_reset">Week has been reset</string>
+    <string name="toast_accent">Accent color updated</string>
+    <string name="toast_all_done">Amazing! Full week completed</string>
+    <string name="toast_notif_on">Notifications enabled</string>
+    <string name="toast_notif_need">Notification permission is required</string>
+    <string name="toast_settings_fail">Could not open settings</string>
+    <string name="toast_language">Language updated</string>
+    <string name="toast_protocol_reset">Protocol restored to default</string>
+
+    <!-- task editor -->
+    <string name="edit_title">Edit routine</string>
+    <string name="edit_add">Add routine</string>
+    <string name="edit_task_title_label">Title</string>
+    <string name="edit_task_desc_label">Description</string>
+    <string name="edit_task_time_label">Time (HH:mm)</string>
+    <string name="edit_save">Save</string>
+    <string name="edit_delete">Delete</string>
+    <string name="edit_delete_confirm">Delete this routine?</string>
+    <string name="edit_invalid_time">Enter a valid time (HH:mm)</string>
+    <string name="toast_task_saved">Routine updated</string>
+    <string name="toast_task_added">Routine added</string>
+    <string name="toast_task_deleted">Routine deleted</string>
+
+    <!-- notifications -->
+    <string name="notif_advance_title">%1$s — in %2$d min</string>
+    <string name="notif_advance_body">Today\'s %1$s routine is still pending — it starts at %2$s.</string>
+    <string name="notif_now_title">Time now — %1$s</string>
+    <string name="notif_now_body">%1$s — %2$s</string>
+    <string name="notif_day_title">HairGrowth OS — %1$s</string>
+</resources>

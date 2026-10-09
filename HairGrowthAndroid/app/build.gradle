@@ -1,0 +1,59 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.hairgrowth.os'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.hairgrowth.os"
+        minSdk 23
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+        vectorDrawables { useSupportLibrary true }
+        resourceConfigurations += ["bn", "hi", "en"]
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("../keystore/hgos-release.jks")
+            storePassword "hgos2026"
+            keyAlias "hgos"
+            keyPassword "hgos2026"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+    buildFeatures {
+        viewBinding false
+    }
+    packagingOptions {
+        resources.excludes += ["META-INF/*.kotlin_module"]
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.fragment:fragment-ktx:1.6.2'
+}

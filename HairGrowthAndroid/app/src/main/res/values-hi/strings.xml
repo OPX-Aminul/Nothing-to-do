@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_name">प्रोटोकॉल रिमाइंडर</string>
+    <string name="channel_desc">दैनिक बाल देखभाल रूटीन के रिमाइंडर</string>
+    <string name="splash_sub">CLINICAL PROTOCOL</string>
+
+    <string name="greeting_prefix">शुभ </string>
+    <string name="greeting_morning">सुबह</string>
+    <string name="greeting_afternoon">दोपहर</string>
+    <string name="greeting_evening">शाम</string>
+    <string name="greeting_night">रात</string>
+
+    <string name="nav_home">होम</string>
+    <string name="nav_dashboard">डैशबोर्ड</string>
+    <string name="nav_reminders">रिमाइंडर</string>
+    <string name="nav_settings">सेटिंग्स</string>
+
+    <string name="home_title">आज का प्रोटोकॉल</string>
+    <string name="home_sub">अपने बालों की देखभाल के चरण क्रम से पूरे करें।</string>
+    <string name="home_week">सप्ताह</string>
+    <string name="tag_today">आज</string>
+    <string name="tag_derma">डर्मा दिवस</string>
+    <string name="add_task">+ नया रूटीन</string>
+
+    <string name="day_sun">रविवार</string>
+    <string name="day_mon">सोमवार</string>
+    <string name="day_tue">मंगलवार</string>
+    <string name="day_wed">बुधवार</string>
+    <string name="day_thu">गुरुवार</string>
+    <string name="day_fri">शुक्रवार</string>
+    <string name="day_sat">शनिवार</string>
+    <string name="day_sun_short">रवि</string>
+    <string name="day_mon_short">सोम</string>
+    <string name="day_tue_short">मंगल</string>
+    <string name="day_wed_short">बुध</string>
+    <string name="day_thu_short">गुरु</string>
+    <string name="day_fri_short">शुक्र</string>
+    <string name="day_sat_short">शनि</string>
+
+    <string name="task_minoxidil">मिनोक्सिडिल 5%</string>
+    <string name="task_shampoo">केटोकोनाज़ोल शैम्पू</string>
+    <string name="task_derma">डर्मा रोलर (0.5mm)</string>
+    <string name="desc_minox_morning">सुबह • स्कैल्प पर 1ml</string>
+    <string name="desc_minox_night">रात • स्कैल्प पर 1ml</string>
+    <string name="desc_shampoo_wash">रात • 3-5 मिनट वॉश</string>
+    <string name="desc_shampoo_cleanse">रात • स्कैल्प साफ़ करें</string>
+    <string name="desc_derma_rolling">रात • 4-5 बार स्पॉट रोलिंग</string>
+
+    <string name="dash_weekly">साप्ताहिक</string>
+    <string name="dash_streak">स्ट्रीक</string>
+    <string name="dash_streak_sub">लगातार प्रोटोकॉल दिन</string>
+    <string name="dash_done">पूर्ण</string>
+    <string name="dash_done_sub">इस सप्ताह के कार्य</string>
+    <string name="dash_progress">साप्ताहिक प्रगति</string>
+    <string name="dash_insights">अंतर्दृष्टि</string>
+    <string name="dash_7days">7 दिन</string>
+    <string name="dash_daily">दैनिक पूर्णता</string>
+    <string name="dash_streak_meta">लगातार दिन प्रोटोकॉल\nपूरा किया</string>
+    <string name="dash_derma_next">अगला डर्मा सत्र</string>
+    <string name="dash_derma_days">%1$d दिन बाकी</string>
+    <string name="dash_effectiveness">साप्ताहिक प्रभावशीलता</string>
+
+    <string name="rem_title">रिमाइंडर</string>
+    <string name="notif_banner_title">सूचनाएँ</string>
+    <string name="notif_banner_off">दैनिक रिमाइंडर के लिए सूचनाएँ अनुमति दें</string>
+    <string name="notif_banner_on">सूचनाएँ चालू हैं</string>
+    <string name="btn_enable">चालू करें</string>
+    <string name="btn_on">चालू</string>
+    <string name="rem_all_on">सभी चालू</string>
+    <string name="rem_all_off">सभी बंद</string>
+    <string name="rem_test">टेस्ट</string>
+    <string name="rem_derma_suffix"> · डर्मा</string>
+    <string name="rem_note">किसी दिन का switch चालू करें और हर रूटीन अपने समय पर रिमाइंडर भेजेगा।</string>
+    <string name="rem_test_sent">टेस्ट सूचना भेजी गई</string>
+    <string name="rem_all_on_toast">सभी दिनों के रिमाइंडर चालू</string>
+    <string name="rem_all_off_toast">सभी रिमाइंडर बंद</string>
+    <string name="rem_day_on_toast">%1$s — %2$d रूटीन के रिमाइंडर चालू</string>
+    <string name="rem_day_off_toast">%1$s रिमाइंडर बंद</string>
+    <string name="exact_alarm_hint">समय पर अलर्ट के लिए “Alarms &amp; reminders” अनुमति दें — टैप करें</string>
+    <string name="rem_edit_hint">समय टैप करके वह रूटीन बदलें</string>
+
+    <string name="set_title">सेटिंग्स</string>
+    <string name="set_haptic">हैप्टिक फ़ीडबैक</string>
+    <string name="set_haptic_sub">टैप पर कंपन</string>
+    <string name="set_sound">ध्वनि प्रभाव</string>
+    <string name="set_sound_sub">पूरा होने पर टोन</string>
+    <string name="set_accent">एक्सेंट रंग</string>
+    <string name="set_accent_sub">ऐप थीम टोन</string>
+    <string name="set_language">भाषा</string>
+    <string name="set_language_sub">English · हिन्दी · বাংলা</string>
+    <string name="set_customize">प्रोटोकॉल कस्टमाइज़ करें</string>
+    <string name="set_customize_sub">कार्य, समय और रिमाइंडर बदलें</string>
+    <string name="set_reset_week">सप्ताह रीसेट करें</string>
+    <string name="set_reset_week_sub">सभी कार्य अनचेक करेगा</string>
+    <string name="set_privacy">100% निजी</string>
+    <string name="set_privacy_sub">डेटा केवल इस डिवाइस पर संग्रहित</string>
+    <string name="reset_protocol">प्रोटोकॉल रीसेट</string>
+    <string name="reset_protocol_sub">डिफ़ॉल्ट कार्य और समय लौटाएँ</string>
+
+    <string name="dialog_reset_title">सप्ताह रीसेट</string>
+    <string name="dialog_reset_msg">नए सप्ताह के लिए सभी कार्य अनचेक करें?</string>
+    <string name="dialog_reset_ok">रीसेट करें</string>
+    <string name="dialog_cancel">रद्द करें</string>
+    <string name="dialog_reset_protocol_title">प्रोटोकॉल रीसेट</string>
+    <string name="dialog_reset_protocol_msg">डिफ़ॉल्ट दैनिक प्रोटोकॉल वापस लाएँ?</string>
+    <string name="toast_week_reset">सप्ताह रीसेट हो गया</string>
+    <string name="toast_accent">एक्सेंट रंग बदल गया</string>
+    <string name="toast_all_done">शानदार! पूरा सप्ताह पूर्ण</string>
+    <string name="toast_notif_on">सूचनाएँ चालू हो गईं</string>
+    <string name="toast_notif_need">सूचना की अनुमति आवश्यक है</string>
+    <string name="toast_settings_fail">सेटिंग्स नहीं खुल सकीं</string>
+    <string name="toast_language">भाषा बदल गई</string>
+    <string name="toast_protocol_reset">प्रोटोकॉल डिफ़ॉल्ट पर लौटा</string>
+
+    <string name="edit_title">रूटीन बदलें</string>
+    <string name="edit_add">नया रूटीन</string>
+    <string name="edit_task_title_label">शीर्षक</string>
+    <string name="edit_task_desc_label">विवरण</string>
+    <string name="edit_task_time_label">समय (HH:mm)</string>
+    <string name="edit_save">सेव करें</string>
+    <string name="edit_delete">हटाएँ</string>
+    <string name="edit_delete_confirm">यह रूटीन हटाएँ?</string>
+    <string name="edit_invalid_time">सही समय दर्ज करें (HH:mm)</string>
+    <string name="toast_task_saved">रूटीन अपडेट हुआ</string>
+    <string name="toast_task_added">नया रूटीन जोड़ा गया</string>
+    <string name="toast_task_deleted">रूटीन हटाया गया</string>
+
+    <string name="notif_advance_title">%1$s — %2$d मिनट में</string>
+    <string name="notif_advance_body">आज का %1$s रूटीन अभी बाकी है — %2$s पर शुरू होगा।</string>
+    <string name="notif_now_title">अभी समय है — %1$s</string>
+    <string name="notif_now_body">%1$s — %2$s</string>
+    <string name="notif_day_title">HairGrowth OS — %1$s</string>
+</resources>
